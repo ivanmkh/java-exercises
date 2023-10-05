@@ -7,6 +7,6 @@ public class Main {
         double radius = new Scanner(System.in).nextDouble();
 
         double perimeter = 2 * Math.PI * radius;
-        System.out.println(String.format("Ther perimeter is %.2f", perimeter));
+        System.out.printf("Ther perimeter is %.2f", perimeter);
     }
 }

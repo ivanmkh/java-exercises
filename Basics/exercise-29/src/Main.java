@@ -7,6 +7,6 @@ public class Main {
         String hexadecimal = new Scanner(System.in).nextLine();
         int hexadecimalToDecimal = Integer.parseInt(hexadecimal, 16);
         String binary = Integer.toBinaryString(hexadecimalToDecimal);
-        System.out.println(String.format("binary number is %s", binary));
+        System.out.printf("binary number is %s", binary);
     }
 }

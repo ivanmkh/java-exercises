@@ -9,6 +9,6 @@ public class Main {
         int secondBinaryNumber = Integer.parseInt(String.valueOf(new Scanner(System.in).nextInt()),2);
 
         String product = Integer.toBinaryString(firstBinaryNumber * secondBinaryNumber);
-        System.out.println(String.format("The product of two binary numbers is %s", product));
+        System.out.printf("The product of two binary numbers is %s", product);
     }
 }

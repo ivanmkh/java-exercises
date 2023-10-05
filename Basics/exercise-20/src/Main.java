@@ -7,6 +7,6 @@ public class Main {
         int decimal = new Scanner(System.in).nextInt();
 
         String hexadecimal = Integer.toHexString(decimal);
-        System.out.println(String.format("Hexadecimal number is %s", hexadecimal.toUpperCase()));
+        System.out.printf("Hexadecimal number is %s", hexadecimal.toUpperCase());
     }
 }

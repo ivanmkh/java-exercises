@@ -7,6 +7,6 @@ public class Main {
         String hexadecimal = new Scanner(System.in).nextLine();
         int hexadecimalToDecimal = Integer.parseInt(hexadecimal, 16);
         String octal = Integer.toOctalString(hexadecimalToDecimal);
-        System.out.println(String.format("octal number is %s", octal));
+        System.out.printf("octal number is %s", octal);
     }
 }

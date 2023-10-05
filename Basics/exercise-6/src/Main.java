@@ -13,10 +13,10 @@ public class Main {
         int substract = number1 - number2;
         int divide = number1 / number2;
         int reminder = number1 % number2;
-        System.out.println(String.format("%d + %d = %d", number1, number2, sum));
-        System.out.println(String.format("%d * %d = %d", number1, number2, multiply));
-        System.out.println(String.format("%d - %d = %d", number1, number2, substract));
-        System.out.println(String.format("%d / %d = %d", number1, number2, divide));
-        System.out.println(String.format("%d mod %d = %d", number1, number2, reminder));
+        System.out.printf("%d + %d = %d", number1, number2, sum);
+        System.out.printf("%d * %d = %d", number1, number2, multiply);
+        System.out.printf("%d - %d = %d", number1, number2, substract);
+        System.out.printf("%d / %d = %d", number1, number2, divide);
+        System.out.printf("%d mod %d = %d", number1, number2, reminder);
     }
 }

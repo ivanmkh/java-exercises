@@ -11,6 +11,6 @@ public class Main {
         double area = width * height;
         double perimeter = 2 * (width + height);
 
-        System.out.println(String.format("The area is %.2f and the perimeter is %.2f", area, perimeter));
+        System.out.printf("The area is %.2f and the perimeter is %.2f", area, perimeter);
     }
 }

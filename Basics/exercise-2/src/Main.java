@@ -11,6 +11,6 @@ public class Main {
         int number2 = new Scanner(System.in).nextInt();
 
         int sum = number1 + number2;
-        System.out.println(String.format("The sum is %d", sum));
+        System.out.printf("The sum is %d", sum);
     }
 }

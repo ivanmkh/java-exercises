@@ -6,6 +6,6 @@ public class Main {
         System.out.print("Input a hexadecimal number: ");
         String hexadecimal = new Scanner(System.in).nextLine();
         int hexadecimalToDecimal = Integer.parseInt(hexadecimal, 16);
-        System.out.println(String.format("decimal number is %d", hexadecimalToDecimal));
+        System.out.printf("decimal number is %d", hexadecimalToDecimal);
     }
 }

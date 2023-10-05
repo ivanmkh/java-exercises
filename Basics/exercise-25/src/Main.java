@@ -8,6 +8,6 @@ public class Main {
 
         int octalToDecimal =  Integer.parseInt(octal, 8);
 
-        System.out.println(String.format("Decimal number is %d", octalToDecimal));
+        System.out.printf("Decimal number is %d", octalToDecimal);
     }
 }

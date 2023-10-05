@@ -9,6 +9,6 @@ public class Main {
         int number2 = new Scanner(System.in).nextInt();
 
         int result = number1 / number2;
-        System.out.println(String.format("The result is %d", result));
+        System.out.printf("The result is %d", result);
     }
 }

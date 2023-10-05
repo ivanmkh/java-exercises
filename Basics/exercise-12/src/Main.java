@@ -11,6 +11,6 @@ public class Main {
         int number3 = new Scanner(System.in).nextInt();
 
         double average = (number1 + number2 + number3) / 3f;
-        System.out.println(String.format("The average of these numbers is %.2f", average));
+        System.out.printf("The average of these numbers is %.2f", average);
     }
 }

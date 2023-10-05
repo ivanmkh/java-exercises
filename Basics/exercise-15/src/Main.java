@@ -12,6 +12,6 @@ public class Main {
         number1 = number2;
         number2 = temp;
 
-        System.out.println(String.format("The first number now is %d and the second is %d", number1, number2));
+        System.out.printf("The first number now is %d and the second is %d", number1, number2);
     }
 }

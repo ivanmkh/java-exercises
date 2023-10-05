@@ -7,6 +7,6 @@ public class Main {
         String binaryNumber = new Scanner(System.in).nextLine();
         int binaryToDecimal = Integer.parseInt(binaryNumber, 2);
 
-        System.out.println(String.format("The decimal number is %d", binaryToDecimal));
+        System.out.printf("The decimal number is %d", binaryToDecimal);
     }
 }

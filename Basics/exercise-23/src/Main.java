@@ -9,6 +9,6 @@ public class Main {
         int binaryToDecimal = Integer.parseInt(binary, 2);
         String hexadecimal = Integer.toHexString(binaryToDecimal);
 
-        System.out.println(String.format("Hexadecimal number is %s", hexadecimal.toUpperCase()));
+        System.out.printf("Hexadecimal number is %s", hexadecimal.toUpperCase());
     }
 }
