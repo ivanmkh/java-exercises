@@ -17,16 +17,15 @@ Given grid:
 </pre>
 Searching minimum-valued path ..
 <pre>
-4  9  4  2  1                      
-                6  1  1              
-                        3              
-                        7  6  1      
-                                2      
-                                1  0  
-                                    3  
-                                    1  
+4   9   4   2   1           
+                6   1   1       
+                        3       
+                        7   6   1   
+                                2   
+                                1   0 
+                                    3 
+                                    1 
                                     6
                                     2
 </pre>
-<br>
-Sum  of all numbers along its path: 60
+Sum of all numbers along its path: 60
