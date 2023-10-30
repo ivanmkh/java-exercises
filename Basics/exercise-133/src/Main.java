@@ -7,89 +7,48 @@ import java.util.Arrays;
 // Sample Output: Sum of all numbers along its path: 13
 public class Main {
     public static void main(String[] args) {
-        int[][] grid1 = {
-                {5, 0, 5, 5, 5},
-                {5, 0, 5, 5, 5},
-                {5, 0, 0, 0, 5},
-                {5, 5, 5, 0, 0},
-                {5, 5, 5, 5, 5}
-        };
-
-        System.out.println("\nGiven grid:");
-        for (int[] row : grid1) {
-            System.out.println(Arrays.toString(row));
+        int[][] grid = new int[3][3];
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid.length; j++) {
+                grid[i][j] = (int) Math.round(Math.random() * 9);
+            }
         }
 
-        System.out.printf("\nSum of all numbers along its path: %s\n", getMinimalPath(grid1));
-
-        int[][] grid2 = {
-                {7, 4, 2},
-                {0, 5, 6},
-                {3, 1, 2}
-        };
-
         System.out.println("\nGiven grid:");
-        for (int[] row : grid2) {
-            System.out.println(Arrays.toString(row));
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid.length; j++) {
+                System.out.print(grid[i][j] + " ");
+            }
+            System.out.println();
         }
 
-        System.out.printf("\nSum of all numbers along its path: %s\n", getMinimalPath(grid2));
-
+        System.out.printf("\nSum of all numbers along its path: %s\n", minPathSum(grid));
     }
 
-    public static int getMinimalPath(int[][] grid) {
-        int minimalPathSum = 0;
+    public static int minPathSum(int[][] grid) {
+        // Check for invalid or empty input grid
+        if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+            return 0;
+        }
+        int m = grid.length; // Number of rows in the grid
+        int n = grid[0].length; // Number of columns in the grid
+        int[][] calculatedSumsGrid = new int[m][n]; // Temporary array to store minimum path sum
 
-        int row = 0;
-        int column = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 && j == 0) {
+                    calculatedSumsGrid[i][j] = grid[i][j]; // Initialize the starting point
+                    continue;
+                }
 
-        while (row < grid.length - 1 || column < grid.length - 1) {
-
-            // finalization
-            if (row == grid.length - 1) {
-                for (int i = column + 1; i < grid.length; i++) {
-                    minimalPathSum += grid[row][i];
-                }
-                break;
-            } else if (column == grid.length - 1) {
-                for (int j = row + 1; j < grid.length; j++) {
-                    minimalPathSum += grid[j][column];
-                }
-                break;
-            }
-
-            // find minimal number in a column
-            int minimalRowNumber = Integer.MAX_VALUE;
-            int minimalRowNumberRow = 0;
-            for (int i = row + 1; i < grid.length; i++) {
-                if (grid[i][column] < minimalRowNumber) {
-                    minimalRowNumber = grid[i][column];
-                    minimalRowNumberRow = i;
-                }
-            }
-            // find minimal number in a row
-            int minimalColumnNumber = Integer.MAX_VALUE;
-            int minimalColumnNumberColumn = 0;
-            for (int j = column + 1; j < grid.length; j++) {
-                if (grid[row][j] < minimalColumnNumber) {
-                    minimalColumnNumber = grid[row][j];
-                    minimalColumnNumberColumn = j;
-                }
-            }
-            // go to the closest minimal value an calculate sum
-            if (minimalRowNumber < minimalColumnNumber) {
-                for (int i = row; i < minimalRowNumberRow + 1; i++) {
-                    minimalPathSum += grid[i][column];
-                }
-                row = minimalRowNumberRow;
-            } else {
-                for (int j = column; j < minimalColumnNumberColumn + 1; j++) {
-                    minimalPathSum += grid[row][j];
-                }
-                column = minimalColumnNumberColumn;
+                // Calculate the minimum path sum from either the cell above or the cell on the left
+                int from_up = i == 0 ? Integer.MAX_VALUE : calculatedSumsGrid[i - 1][j];
+                int from_left = j == 0 ? Integer.MAX_VALUE : calculatedSumsGrid[i][j - 1];
+                calculatedSumsGrid[i][j] = Math.min(from_up, from_left) + grid[i][j]; // Update the temporary array
             }
         }
 
-        return minimalPathSum;
+        // Return the minimum path sum for the last cell
+        return calculatedSumsGrid[m - 1][n - 1];
     }
 }
