@@ -4,21 +4,23 @@
 // Note: Move either down or right at any point in time.
 // Sample Output: Sum of all numbers along its path: 13
 public class Main {
-    public static void main(String[] args) {
+    public static final int GRID_DIMENSION = 10;
+
+    public static void main(String[] args) throws InterruptedException {
         System.out.printf("\nDESCRIPTION: The task is to find the minimum path sum in a 2D grid.\n" +
                 "Path from top left to bottom in the right direction which\n" +
                 "minimizes the sum of all numbers along its path.\n");
 
-        int[][] grid = new int[10][10];
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid.length; j++) {
+        int[][] grid = new int[GRID_DIMENSION][GRID_DIMENSION];
+        for (int i = 0; i < GRID_DIMENSION; i++) {
+            for (int j = 0; j < GRID_DIMENSION; j++) {
                 grid[i][j] = (int) Math.round(Math.random() * 9);
             }
         }
 
         System.out.println("\nGiven grid:");
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid.length; j++) {
+        for (int i = 0; i < GRID_DIMENSION; i++) {
+            for (int j = 0; j < GRID_DIMENSION; j++) {
                 System.out.print(grid[i][j] + " ");
             }
             System.out.println();
@@ -27,13 +29,13 @@ public class Main {
         System.out.printf("\nSum of all numbers along its path: %s\n", minPathSum(grid));
     }
 
-    public static int minPathSum(int[][] grid) {
+    public static int minPathSum(int[][] grid) throws InterruptedException {
         // Check for invalid or empty input grid
-        if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+        if (grid == null || GRID_DIMENSION == 0) {
             return 0;
         }
-        int m = grid.length; // Number of rows in the grid
-        int n = grid[0].length; // Number of columns in the grid
+        int m = GRID_DIMENSION; // Number of rows in the grid
+        int n = GRID_DIMENSION; // Number of columns in the grid
         int[][] calculatedSumsGrid = new int[m][n]; // Temporary array to store minimum path sum
 
         for (int i = 0; i < m; i++) {
@@ -56,18 +58,18 @@ public class Main {
         return calculatedSumsGrid[m - 1][n - 1];
     }
 
-    public static void showMinimalPath(int[][] originalGrid, int[][] calculatedSumsGrid) {
+    public static void showMinimalPath(int[][] originalGrid, int[][] calculatedSumsGrid) throws InterruptedException {
         // starting from right bottom corner
-        int row = originalGrid.length - 1;
-        int column = originalGrid.length - 1;
-        String[][] shortestPathGrid = new String[originalGrid.length][originalGrid.length];
-        for (int i = 0; i < shortestPathGrid.length; i++) {
-            for (int j = 0; j < shortestPathGrid.length; j++) {
+        int row = GRID_DIMENSION - 1;
+        int column = GRID_DIMENSION - 1;
+        String[][] shortestPathGrid = new String[GRID_DIMENSION][GRID_DIMENSION];
+        for (int i = 0; i < GRID_DIMENSION; i++) {
+            for (int j = 0; j < GRID_DIMENSION; j++) {
                 shortestPathGrid[i][j] = " ";
             }
         }
         shortestPathGrid[row][column] = String.valueOf(originalGrid[row][column]);
-        while (row > 0 || column > 0) {
+        while (row > 0) {
             // go to minimal
             if (calculatedSumsGrid[row - 1][column] < calculatedSumsGrid[row][column - 1]) {
                 // go up
@@ -80,21 +82,22 @@ public class Main {
             }
             // if zero index is achieved then go directly to [0][0] point
             if (row == 0) {
-                for (int i = column; i>= 0; i--){
+                for (int i = column; i >= 0; i--) {
                     shortestPathGrid[row][i] = String.valueOf(originalGrid[row][i]);
                 }
                 column = 0;
             } else if (column == 0) {
-                for (int i = column; i>= 0; i--) {
-                    shortestPathGrid[i][column] = String.valueOf(originalGrid[i][column]);
+                for (int j = row; j >= 0; j--) {
+                    shortestPathGrid[j][column] = String.valueOf(originalGrid[j][column]);
                 }
                 row = 0;
             }
         }
 
         System.out.println("\nSearching minimum-valued path .. ");
-        for (int i = 0; i < shortestPathGrid.length; i++) {
-            for (int j = 0; j < shortestPathGrid.length; j++) {
+        for (int i = 0; i < GRID_DIMENSION; i++) {
+            for (int j = 0; j < GRID_DIMENSION; j++) {
+                Thread.sleep(1sdd00);
                 System.out.print(shortestPathGrid[i][j] + " ");
             }
             System.out.println();
