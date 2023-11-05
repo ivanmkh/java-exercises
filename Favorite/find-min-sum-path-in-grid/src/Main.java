@@ -97,7 +97,6 @@ public class Main {
         System.out.println("\nSearching minimum-valued path .. ");
         for (int i = 0; i < GRID_DIMENSION; i++) {
             for (int j = 0; j < GRID_DIMENSION; j++) {
-                Thread.sleep(100);
                 System.out.print(shortestPathGrid[i][j] + " ");
             }
             System.out.println();
