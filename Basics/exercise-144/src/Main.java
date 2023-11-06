@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 // Write a Java program to remove all occurrences of a specified value in a given array of integers.
@@ -20,10 +19,6 @@ public class Main {
                 list.add(element);
             }
         }
-        int[] newArray = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            newArray[i] = list.get(i);
-        }
-        return newArray;
+        return list.stream().mapToInt(i -> i).toArray();
     }
 }
