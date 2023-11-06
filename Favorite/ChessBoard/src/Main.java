@@ -7,6 +7,7 @@ public class Main {
 
         String comparationResult = ChessBoard.getColor(square1.coordinate) == ChessBoard.getColor(square2.coordinate) ?
                 "equals" : "different";
+
         System.out.println(square1.getColor());
         System.out.println(square2.getColor());
         System.out.printf("Colors are %s.", comparationResult);
