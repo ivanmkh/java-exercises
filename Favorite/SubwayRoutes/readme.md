@@ -5,8 +5,8 @@
 Simplified example of subway schema and route between station A and I:
 ![Example](assets/example.png)
 
-Travel time between two in-line stations: 2.5 minutes
-Transfer time between lines: 3.5 minutes
+<br>Travel time between two in-line stations: **2.5 minutes**
+<br>Transfer time between lines: **3.5 minutes**
 
 <pre>
 The route between A and I is:
