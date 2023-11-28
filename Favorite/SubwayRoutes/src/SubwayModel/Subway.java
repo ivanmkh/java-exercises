@@ -65,7 +65,7 @@ public class Subway {
             stationName = new Scanner(System.in).nextLine();
             station = findStation(stationName);
             if (Objects.isNull(station)) {
-                System.out.println("There is no such station! Please, retry again.");
+                System.out.print("There is no such station! Please retry again: ");
             }
         }
         return station;
