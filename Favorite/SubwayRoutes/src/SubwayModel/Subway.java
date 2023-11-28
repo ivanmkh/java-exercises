@@ -1,3 +1,5 @@
+package SubwayModel;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -36,7 +38,7 @@ public class Subway {
 
     public void printAllStations() {
         lines.forEach(line -> {
-            System.out.printf("Line \"%d\": \n", line.getLineNumber());
+            System.out.printf("SubwayModel.Line \"%d\": \n", line.getLineNumber());
             line.printStations();
         });
         ;

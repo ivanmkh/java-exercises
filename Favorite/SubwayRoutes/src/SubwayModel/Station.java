@@ -1,3 +1,5 @@
+package SubwayModel;
+
 public class Station {
     private final String name;
     private final int line;
