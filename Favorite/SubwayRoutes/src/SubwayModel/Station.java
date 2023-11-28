@@ -28,4 +28,9 @@ public class Station {
     public int getInterconnectedLineNumber() {
         return interconnectedLineNumber;
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

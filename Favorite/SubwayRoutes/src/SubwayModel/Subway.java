@@ -22,17 +22,17 @@ public class Subway {
         line1.add(new Station("E", 1, false, -1));
         this.lines.add(line1);
         Line line2 = new Line(2);
-        line2.add(new Station("F", 1, false, -1));
-        line2.add(new Station("C2", 1, true, 1));
-        line2.add(new Station("G", 1, false, -1));
-        line2.add(new Station("L2", 1, true, 3));
-        line2.add(new Station("H", 1, false, -1));
+        line2.add(new Station("F", 2, false, -1));
+        line2.add(new Station("C2", 2, true, 1));
+        line2.add(new Station("G", 2, false, -1));
+        line2.add(new Station("L2", 2, true, 3));
+        line2.add(new Station("H", 2, false, -1));
         this.lines.add(line2);
         Line line3 = new Line(3);
-        line3.add(new Station("I", 1, false, -1));
-        line3.add(new Station("L3", 1, true, 2));
-        line3.add(new Station("J", 1, false, -1));
-        line3.add(new Station("K", 1, false, -1));
+        line3.add(new Station("I", 3, false, -1));
+        line3.add(new Station("L3", 3, true, 2));
+        line3.add(new Station("J", 3, false, -1));
+        line3.add(new Station("K", 3, false, -1));
         this.lines.add(line3);
     }
 
@@ -42,9 +42,6 @@ public class Subway {
             line.printStations();
         });
         ;
-    }
-
-    private void moveInLine() {
     }
 
     public void findRoute() {
@@ -83,7 +80,7 @@ public class Subway {
         return station;
     }
 
-    private List<Station> getRoute(Station begin, Station end) {
+    private List<Station> getRoute(Station fromStation, Station toStation) {
         // TODO implement this method according to the following steps:
         // TODO 1. the method must be recursive
         // TODO 2. there should be 3 states: not_found, found, continue searching
@@ -94,8 +91,41 @@ public class Subway {
         //              attended and fromStation if it is interConnection station;
         //              - collect all successful results, but add only shortest one.
         // TODO     c. return all stations on the route
+        List<Station> route = new ArrayList<>();
+        if (fromStation.getLine() == toStation.getLine()) {
+            route.addAll(moveToStationInLine(fromStation, toStation));
+        } else {
 
-        return new ArrayList<>();
+        }
+        return route;
+    }
+
+    private List<Station> moveToStationInLine(Station fromStation, Station toStation) {
+        List<Station> route = new ArrayList<>();
+        if (fromStation.getLine() != toStation.getLine()) {
+            return null;
+        }
+        int lineNumber = fromStation.getLine();
+        Line line = getLineByNumber(lineNumber);
+        int fromIndex = line.getStationIndex(fromStation.getName());
+        int toIndex = line.getStationIndex(toStation.getName());
+        if (fromIndex <= toIndex) {
+            for (int i = fromIndex; i <= toIndex; i++) {
+                route.add(line.getStationByIndex(i));
+            }
+        } else {
+            for (int i = fromIndex; i >= toIndex; i--) {
+                route.add(line.getStationByIndex(i));
+            }
+        }
+        return route;
+    }
+
+    private Line getLineByNumber(int lineNumber) {
+        return lines.stream()
+                .filter(line -> line.getLineNumber() == lineNumber)
+                .findAny()
+                .orElse(null);
     }
 
     public void getDuration() {
