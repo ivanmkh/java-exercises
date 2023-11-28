@@ -53,6 +53,8 @@ public class Subway {
         List<Station> route = getRoute(fromStation, toStation);
         System.out.println("Route is following: ");
         route.forEach(System.out::println);
+        System.out.printf("Route travel duration is: %f\n", getDuration(route));
+
     }
 
     private Station getStationFromUserInput() {
@@ -128,7 +130,8 @@ public class Subway {
                 .orElse(null);
     }
 
-    public void getDuration() {
+    private double getDuration(List<Station> route) {
+        return 0f;
     }
 
 }
