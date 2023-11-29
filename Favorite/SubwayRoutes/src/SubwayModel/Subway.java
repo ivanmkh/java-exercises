@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class Subway {
     private ArrayList<Line> lines;
-
+    private final double INTERCONNECTION_STATION_DURATION = 1.75;
+    private final double STATION_DURATION = 2.5;
     public Subway() {
         this.lines = new ArrayList<>();
         generateSubway();
@@ -150,7 +151,11 @@ public class Subway {
     }
 
     private double getDuration(List<Station> route) {
-        return 0f;
+        double duration = 0f;
+        for (Station station: route){
+            duration += station.isInterconnection()? INTERCONNECTION_STATION_DURATION: STATION_DURATION;
+        }
+        return duration;
     }
 
 }

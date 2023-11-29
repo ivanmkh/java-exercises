@@ -12,9 +12,11 @@ Simplified example of subway schema and route between station A and I:
 The route between A and I is:
 A
 B
-C (cross line)
+C1 (cross line)
+C2 (cross line)
 G
-L (cross line)
+L2 (cross line)
+L3 (cross line)
 I
-Travel duration: 16 minutes
+Travel duration: 17 minutes
 </pre>
