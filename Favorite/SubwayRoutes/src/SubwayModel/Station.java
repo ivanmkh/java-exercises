@@ -4,12 +4,14 @@ public class Station {
     private final String name;
     private final int line;
     private boolean isInterconnection;
+    private String interconnectedStationName;
     private int interconnectedLineNumber;
 
-    public Station(String name, int line, boolean isInterconnection, int interconnectedLineNumber) {
+    public Station(String name, int line, boolean isInterconnection, String interconnectedStationName, int interconnectedLineNumber) {
         this.name = name;
         this.line = line;
         this.isInterconnection = isInterconnection;
+        this.interconnectedStationName = interconnectedStationName;
         this.interconnectedLineNumber = interconnectedLineNumber;
     }
 
@@ -27,6 +29,10 @@ public class Station {
 
     public int getInterconnectedLineNumber() {
         return interconnectedLineNumber;
+    }
+
+    public String getInterconnectedStationName() {
+        return interconnectedStationName;
     }
 
     @Override

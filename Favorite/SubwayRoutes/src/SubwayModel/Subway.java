@@ -15,24 +15,24 @@ public class Subway {
 
     private void generateSubway() {
         Line line1 = new Line(1);
-        line1.add(new Station("A", 1, false, -1));
-        line1.add(new Station("B", 1, false, -1));
-        line1.add(new Station("C1", 1, true, 2));
-        line1.add(new Station("D", 1, false, -1));
-        line1.add(new Station("E", 1, false, -1));
+        line1.add(new Station("A", 1, false, "", -1));
+        line1.add(new Station("B", 1, false, "", -1));
+        line1.add(new Station("C1", 1, true, "C2", 2));
+        line1.add(new Station("D", 1, false, "", -1));
+        line1.add(new Station("E", 1, false, "", -1));
         this.lines.add(line1);
         Line line2 = new Line(2);
-        line2.add(new Station("F", 2, false, -1));
-        line2.add(new Station("C2", 2, true, 1));
-        line2.add(new Station("G", 2, false, -1));
-        line2.add(new Station("L2", 2, true, 3));
-        line2.add(new Station("H", 2, false, -1));
+        line2.add(new Station("F", 2, false, "", -1));
+        line2.add(new Station("C2", 2, true, "C1", 1));
+        line2.add(new Station("G", 2, false, "", -1));
+        line2.add(new Station("L2", 2, true, "L3", 3));
+        line2.add(new Station("H", 2, false, "", -1));
         this.lines.add(line2);
         Line line3 = new Line(3);
-        line3.add(new Station("I", 3, false, -1));
-        line3.add(new Station("L3", 3, true, 2));
-        line3.add(new Station("J", 3, false, -1));
-        line3.add(new Station("K", 3, false, -1));
+        line3.add(new Station("I", 3, false, "", -1));
+        line3.add(new Station("L3", 3, true, "L2", 2));
+        line3.add(new Station("J", 3, false, "", -1));
+        line3.add(new Station("K", 3, false, "", -1));
         this.lines.add(line3);
     }
 
@@ -50,10 +50,10 @@ public class Subway {
         fromStation = getStationFromUserInput();
         System.out.print("Input destination station: ");
         toStation = getStationFromUserInput();
-        List<Station> route = getRoute(fromStation, toStation);
+        List<Station> route = getRoute(fromStation, toStation, new ArrayList<>());
         System.out.println("Route is following: ");
         route.forEach(System.out::println);
-        System.out.printf("Route travel duration is: %f\n", getDuration(route));
+        System.out.printf("Travel duration is: %f\n", getDuration(route));
 
     }
 
@@ -62,7 +62,7 @@ public class Subway {
         String stationName = null;
         while (Objects.isNull(station)) {
             stationName = new Scanner(System.in).nextLine();
-            station = findStation(stationName);
+            station = getStationByName(stationName);
             if (Objects.isNull(station)) {
                 System.out.print("There is no such station! Please retry again: ");
             }
@@ -70,7 +70,7 @@ public class Subway {
         return station;
     }
 
-    private Station findStation(String stationName) {
+    private Station getStationByName(String stationName) {
         Station station = null;
         for (int i = 0; i < lines.size(); i++) {
             int index = lines.get(i).getStationIndex(stationName);
@@ -82,22 +82,41 @@ public class Subway {
         return station;
     }
 
-    private List<Station> getRoute(Station fromStation, Station toStation) {
-        // TODO implement this method according to the following steps:
-        // TODO 1. the method must be recursive
-        // TODO 2. there should be 3 states: not_found, found, continue searching
-        // TODO 3. method should consist of 2 main steps
-        // TODO     a. InLine search
-        // TODO     b. InterConnected lines search
-        // TODO         - check interConnection stations and exclude those tah are already
-        //              attended and fromStation if it is interConnection station;
-        //              - collect all successful results, but add only shortest one.
-        // TODO     c. return all stations on the route
+    private List<Station> getRoute(Station fromStation, Station toStation, List<Station> previousRoute) {
         List<Station> route = new ArrayList<>();
+        List<List<Station>> subRoutes = new ArrayList<>();
+        List<Station> interconnectedStations = new ArrayList<>();
         if (fromStation.getLine() == toStation.getLine()) {
             route.addAll(moveToStationInLine(fromStation, toStation));
         } else {
-
+            interconnectedStations = getLineByNumber(fromStation.getLine()).getAllIntercaonnectionStations();
+            if (interconnectedStations.contains(fromStation)) {
+                interconnectedStations.remove(fromStation);
+            }
+            for (Station station : previousRoute) {
+                if (interconnectedStations.contains(station)) {
+                    interconnectedStations.remove(station);
+                }
+            }
+            for (int i = 0; i < interconnectedStations.size(); i++) {
+                subRoutes.add(new ArrayList<>());
+                subRoutes.get(i).addAll(moveToStationInLine(fromStation, interconnectedStations.get(i)));
+                String interconnectedStationName = interconnectedStations.get(i).getInterconnectedStationName();
+                Station interconnected = getStationByName(interconnectedStationName);
+                List<Station> tempRoute = getRoute(interconnected, toStation, subRoutes.get(i));
+                if (tempRoute.get(tempRoute.size() - 1).getName().equals(toStation.getName())) {
+                    subRoutes.get(i).addAll(tempRoute);
+                }
+            }
+        }
+        if (!subRoutes.isEmpty()) {
+            int minRouteIndex = 0;
+            for (int i = 0; i<subRoutes.size();i++) {
+                if (subRoutes.get(i).size() < subRoutes.get(minRouteIndex).size()){
+                    minRouteIndex = i;
+                }
+            }
+            route.addAll(subRoutes.get(minRouteIndex));
         }
         return route;
     }

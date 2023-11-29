@@ -1,6 +1,8 @@
 package SubwayModel;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Line {
     private int lineNumber;
@@ -29,6 +31,12 @@ public class Line {
 
     public int getLineNumber() {
         return lineNumber;
+    }
+
+    public List<Station> getAllIntercaonnectionStations() {
+        return stations.stream()
+                .filter(Station::isInterconnection)
+                .collect(Collectors.toList());
     }
 
     public void printStations() {
