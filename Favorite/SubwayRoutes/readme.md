@@ -1,4 +1,4 @@
-# SubwayModel.Subway Routes
+# Get Subway Route
 
 **Description:** The task is to find a route between two given stations and measure transit duration.
 
