@@ -54,7 +54,7 @@ public class Subway {
         List<Station> route = getRoute(fromStation, toStation, new ArrayList<>());
         System.out.println("Route is following: ");
         route.forEach(System.out::println);
-        System.out.printf("Travel duration is: %f\n", getDuration(route));
+        System.out.printf("Travel duration is %.1f minutes\n", getDuration(route));
 
     }
 
@@ -152,6 +152,7 @@ public class Subway {
 
     private double getDuration(List<Station> route) {
         double duration = 0f;
+        route.remove(0);
         for (Station station: route){
             duration += station.isInterconnection()? INTERCONNECTION_STATION_DURATION: STATION_DURATION;
         }

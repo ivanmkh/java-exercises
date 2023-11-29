@@ -18,5 +18,5 @@ G
 L2 (cross line)
 L3 (cross line)
 I
-Travel duration: 17 minutes
+Travel duration: 14.5 minutes
 </pre>
