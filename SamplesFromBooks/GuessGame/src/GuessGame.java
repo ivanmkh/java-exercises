@@ -7,6 +7,7 @@ public class GuessGame {
     Player[] players = new Player[3];
 
     void startGame() {
+        System.out.println("*** GUESS GAME ***\n\r");
         for (int i = 0; i < players.length; i++) {
             players[i] = new Player();
         }
